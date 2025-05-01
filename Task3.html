@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Strength Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 50px;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .feedback {
+      margin-top: 15px;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .weak {
+      color: red;
+    }
+
+    .medium {
+      color: orange;
+    }
+
+    .strong {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Password Strength Checker</h2>
+    <input type="password" id="password" placeholder="Enter your password" />
+    <div id="feedback" class="feedback"></div>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById('password');
+    const feedback = document.getElementById('feedback');
+
+    passwordInput.addEventListener('input', () => {
+      const password = passwordInput.value;
+
+      let strength = 0;
+      let messages = [];
+
+      if (password.length >= 8) strength++;
+      else messages.push("🔴 At least 8 characters");
+
+      if (/[a-z]/.test(password)) strength++;
+      else messages.push("🔴 Include lowercase letters");
+
+      if (/[A-Z]/.test(password)) strength++;
+      else messages.push("🔴 Include uppercase letters");
+
+      if (/[0-9]/.test(password)) strength++;
+      else messages.push("🔴 Include numbers");
+
+      if (/[\W_]/.test(password)) strength++;
+      else messages.push("🔴 Include special characters");
+
+      if (password.length === 0) {
+        feedback.textContent = "";
+        feedback.className = "feedback";
+      } else if (strength <= 2) {
+        feedback.textContent = "Weak Password 🔐\n" + messages.join("\n");
+        feedback.className = "feedback weak";
+      } else if (strength === 3 || strength === 4) {
+        feedback.textContent = "Medium Strength ⚠️\n" + messages.join("\n");
+        feedback.className = "feedback medium";
+      } else {
+        feedback.textContent = "Strong Password ✅";
+        feedback.className = "feedback strong";
+      }
+    });
+  </script>
+</body>
+</html>
