@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Password Strength Checker</title>
   <style>
+        /* Base Dark Theme */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #f7f8fc, #e0e7ff);
+      background: #121212;
+      color: #e0e0e0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -16,79 +18,110 @@
     }
 
     .container {
-      background: #fff;
+      background: #1e1e2f;
       padding: 40px 30px;
       border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
       max-width: 400px;
       width: 100%;
+      transition: background-color 0.3s ease;
     }
 
     h2 {
       margin-bottom: 20px;
       text-align: center;
-      color: #333;
+      color: #fff;
     }
 
     label {
       font-weight: 600;
       display: block;
       margin-bottom: 10px;
+      color: #bbb;
     }
 
     input[type="password"] {
       width: 100%;
       padding: 12px;
       font-size: 16px;
-      border: 1px solid #ccc;
+      border: 1.5px solid #444;
       border-radius: 8px;
+      background: #29293d;
+      color: #eee;
       outline: none;
-      transition: border 0.3s;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     input[type="password"]:focus {
-      border-color: #4f46e5;
+      border-color: #7c3aed;
+      box-shadow: 0 0 8px #7c3aedaa;
     }
 
+    /* Toggle Container */
     .toggle-container {
       margin-top: 10px;
       display: flex;
       align-items: center;
       gap: 10px;
       font-size: 14px;
+      color: #aaa;
+      user-select: none;
     }
 
+    /* Custom checkbox styling */
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: #7c3aed;
+      transition: accent-color 0.3s ease;
+    }
+
+    /* Strength bar */
     .strength-bar {
       margin-top: 20px;
       height: 10px;
       width: 100%;
-      background-color: #eee;
+      background-color: #33334d;
       border-radius: 10px;
       overflow: hidden;
+      box-shadow: inset 0 2px 4px #00000080;
     }
 
     .bar-fill {
       height: 100%;
       width: 0%;
-      background-color: red;
-      transition: width 0.4s ease, background-color 0.4s ease;
+      background-color: #dc2626;
+      transition: width 0.5s ease, background-color 0.5s ease;
+      border-radius: 10px 0 0 10px;
     }
 
+    /* Feedback text */
     .feedback {
       margin-top: 20px;
       font-size: 14px;
       line-height: 1.6;
-      color: #444;
+      min-height: 60px;
+      color: #eee;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      white-space: pre-line;
+    }
+
+    .feedback.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .feedback span {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
 
-    .weak { color: #dc2626; }
-    .medium { color: #f59e0b; }
-    .strong { color: #16a34a; }
+    .weak { color: #f87171; }
+    .medium { color: #fbbf24; }
+    .strong { color: #4ade80; }
   </style>
 </head>
 <body>
