@@ -6,48 +6,89 @@
   <title>Password Strength Checker</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 50px;
-      background: #f4f4f4;
-      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f7f8fc, #e0e7ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
 
     .container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       max-width: 400px;
-      margin: auto;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 10px;
     }
 
     input[type="password"] {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
+      padding: 12px;
       font-size: 16px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 8px;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    input[type="password"]:focus {
+      border-color: #4f46e5;
+    }
+
+    .toggle-container {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .strength-bar {
+      margin-top: 20px;
+      height: 10px;
+      width: 100%;
+      background-color: #eee;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      background-color: red;
+      transition: width 0.4s ease, background-color 0.4s ease;
     }
 
     .feedback {
-      margin-top: 15px;
-      font-weight: bold;
-      padding: 10px;
-      border-radius: 5px;
+      margin-top: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #444;
     }
 
-    .weak {
-      color: red;
+    .feedback span {
+      display: block;
+      margin-bottom: 5px;
     }
 
-    .medium {
-      color: orange;
-    }
-
-    .strong {
-      color: green;
-    }
+    .weak { color: #dc2626; }
+    .medium { color: #f59e0b; }
+    .strong { color: #16a34a; }
   </style>
 </head>
 <body>
